@@ -26,7 +26,7 @@ export default ({ drizzle, drizzleState }) => {
           precision={3}
         />
       </div>
-
+/*
       <div className="section">
         <h2>SimpleStorage</h2>
         <p>
@@ -44,7 +44,7 @@ export default ({ drizzle, drizzleState }) => {
         </p>
         <ContractForm drizzle={drizzle} contract="SimpleStorage" method="set" />
       </div>
-
+*/
       <div className="section">
         <h2>PhillipsToken</h2>
         <p>
@@ -88,7 +88,7 @@ export default ({ drizzle, drizzleState }) => {
           labels={["To Address", "Amount to Send"]}
         />
       </div>
-
+/*
       <div className="section">
         <h2>ComplexStorage</h2>
         <p>
@@ -124,6 +124,29 @@ export default ({ drizzle, drizzleState }) => {
           method="singleDD"
         />
       </div>
+*/
+/*
+      <div className="section">
+        <h2>SalesContract</h2>
+        <p>
+          no of Sales Contract:
+        </p>
+        <p>
+          <strong>Stored Value: </strong>
+          <ContractData
+            drizzle={drizzle}
+            drizzleState={drizzleState}
+            contract="SalesContract"
+            method="getSalesContractCount"
+          />
+        </p>
+        <ContractForm drizzle={drizzle}
+        contract="SalesContract"
+        method="registerSalesContract"
+        labels={["Product Name", "quantity", "price", "Delivery Cost", "date", "Buyer Address"]}
+        />
+      </div>
+*/
     </div>
   );
 };

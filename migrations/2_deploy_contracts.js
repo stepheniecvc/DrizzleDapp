@@ -3,19 +3,16 @@ const SimpleStorage = artifacts.require("SimpleStorage");
 const PhillipsToken = artifacts.require("PhillipsToken");
 const ComplexStorage = artifacts.require("ComplexStorage");
 
+var SupplyChainStorage = artifacts.require("SupplyChainStorage");
+var SalesContract = artifacts.require("SalesContract");
+var Verify = artifacts.require("Verify");
+
 
 require('@openzeppelin/test-helpers/configure')({ provider: web3.currentProvider,
       environment: 'truffle'});
 
 
 const { singletons } = require('@openzeppelin/test-helpers');
-/*
-try {
-    require('openzeppelin-test-helpers/configure')({ web3 });
-} catch (e) {
-    console.error("ERROR: Failed openzeppelin-test-helpers configuration.")
-}
-*/
 /*
 module.exports = function(deployer) {
   deployer.deploy(SimpleStorage);
@@ -36,5 +33,12 @@ module.exports = async function (deployer, network, accounts) {
   await deployer.deploy(SimpleStorage);
   await deployer.deploy(ComplexStorage);
 
+  deployer.deploy(Verify)
+      .then(() => Verify.deployed())
+      .then(() => deployer.link(Verify, SupplyChainStorage))
+      // Wait until the storage contract is deployed
+      .then(() => deployer.deploy(SupplyChainStorage))
+      .then(() => SupplyChainStorage.deployed())
+      .then(() => deployer.deploy(SalesContract, SupplyChainStorage.address))
 
 }
